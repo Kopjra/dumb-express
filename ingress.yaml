@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: gce
+  name: dumb-express-ingress
+  namespace: dumb-express
+spec:
+  rules:
+    - host: api.dumb-express.kopjra.com
+      http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: dumb-express-srv
+                port:
+                  number: 80

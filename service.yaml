@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dumb-express-srv
+  namespace: dumb-express
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
+    cloud.google.com/app-protocols: '{"api":"HTTP"}'
+spec:
+  ports:
+    - port: 80
+      name: api
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: dumb-express-app
+  sessionAffinity: None
